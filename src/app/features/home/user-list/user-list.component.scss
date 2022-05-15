@@ -1,0 +1,52 @@
+.container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 15px;
+    column-gap: 15px;
+
+    .card {
+        width: 300px;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        mat-card-header {
+            position: relative;
+            height: 30px;
+            margin-bottom: 15px;
+            p {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+        mat-card-content {
+            text-align: center;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            mat-icon {
+                transition: all .3s ease;
+                border-radius: 4px;
+                &:hover {
+                    cursor: pointer;
+                    background-color: #AAA;
+                }
+
+                &:first-child {
+                    color: green
+                }
+                
+                &:last-child {
+                    color: rgb(121, 43, 43)
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+<div class="container" *ngIf="(users$ | async) as users">
+    <mat-card
+        *ngFor="let card of users; index as i"
+        
+        class="card"
+    >
+        <mat-card-header>
+            <p>User</p>
+        </mat-card-header>
+        <mat-card-content>
+            <p>Name: {{ card.firstName }}</p>
+            <p>Lastname: {{ card.lastName }}</p>
+            <p>Nickname: {{ card.nickName }}</p>
+            <p>Position: {{ card.job }}</p>
+            <p>Gender: {{ card.gender }}</p>
+            <div class="actions">
+                <mat-icon (click)="onEdit(card.id)">edit</mat-icon>
+                <mat-icon (click)="onDelete(card.id)">delete</mat-icon>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

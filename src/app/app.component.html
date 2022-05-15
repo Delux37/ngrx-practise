@@ -1,0 +1,24 @@
+<nav>
+    <ul>
+        <button 
+        mat-button
+        routerLink="/"
+        routerLinkActive="mat-primary"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Home</button>
+        <button
+         mat-button
+         routerLink="settings"
+         routerLinkActive="mat-primary"
+         [routerLinkActiveOptions]="{ exact: true }"
+         >Add user</button>
+         <button
+         mat-button
+         routerLink="settings/edit-user"
+         routerLinkActive="mat-warn"
+         *ngIf="showEditing$ | async"
+         >Editing user</button>
+    </ul>
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,78 @@
+
+<mat-horizontal-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <form 
+        [formGroup]="firstFormGroup"
+
+        >
+            <ng-template matStepLabel>Fill general info</ng-template>
+            <mat-form-field>
+                <input matInput placeholder="First name" formControlName="firstName" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Last name" formControlName="lastName" required>
+            </mat-form-field>
+
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out detailed info</ng-template>
+        <mat-form-field>
+            <input matInput placeholder="Nickname" formControlName="nickName" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select placeholder="Select your position" formControlName="job" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let job of jobs" [value]="job">
+                {{ job }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="secondFormGroup.get('job')?.hasError('required')">Please choose a position</mat-error>
+        </mat-form-field>
+
+        <mat-radio-group formControlName="gender">
+            <p>Select gender</p>
+            <mat-radio-button value="male">Male</mat-radio-button>
+            <mat-radio-button value="female">Female</mat-radio-button>
+        </mat-radio-group>
+
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+        </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <div class="last-step-container">
+            <ng-template matStepLabel>Done</ng-template>
+            <p>Preview: </p>
+            <div *ngIf="(currentUser$ | async) as user">
+            
+                <mat-list>
+                    <mat-list-item
+                        *ngFor="let userSpecification of user"
+                    >
+                        {{ userSpecification.key }}: {{ userSpecification.value }}
+                    </mat-list-item>
+                </mat-list>
+        
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="onSubmit()">Submit</button>
+            </div>
+            <ng-container
+                *ngIf="(errors$ | async) as errors"
+            >
+                <mat-error 
+                    *ngFor="let error of errors"
+                > {{ error }} </mat-error>
+            </ng-container>
+        </div>
+
+    </mat-step>
+</mat-horizontal-stepper>

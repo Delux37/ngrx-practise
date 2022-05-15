@@ -1,0 +1,33 @@
+form,
+.last-step-container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    row-gap: 30px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+
+    mat-list {
+        &-item{
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    mat-form-field,
+    mat-radio-group {
+        width: 100%;
+    }
+
+    mat-radio-group {
+        .mat-radio-button:first-of-type {
+            margin-right: 10px;
+        }
+    }
+}
+
+mat-horizontal-stepper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
